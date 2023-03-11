@@ -62,6 +62,7 @@ var twoSum = function (numbers, target) {
         }
         if (numbers[left] + numbers[right] > target) {
             right -= 1
+            // Removing the `else if` conditional will reduce runtime to 60ms, and space to 43MB 
         } else if (numbers[left] + numbers[right] < target) {
             left += 1
         }
