@@ -33,3 +33,35 @@ var convert = function (s, numRows) {
     const fullString = mappedString.flat().join('')
     return fullString
 };
+
+// Second draft
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function (s, numRows) {
+    if (numRows === 1) return s
+
+    const rowsArray = new Array(numRows)
+
+    let pointer = 0
+    let increase = true
+
+    for (let i = 0; i < s.length; i++) {
+        if (i < numRows) {
+            rowsArray[pointer] = []
+        }
+        rowsArray[pointer].push(s.charAt(i))
+
+        pointer = increase ? pointer + 1 : pointer - 1
+
+        if (pointer === 0) {
+            increase = true
+        }
+        if (pointer === numRows - 1) {
+            increase = false
+        }
+    }
+    return rowsArray.flat().join('')
+};
