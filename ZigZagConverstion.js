@@ -65,3 +65,36 @@ var convert = function (s, numRows) {
     }
     return rowsArray.flat().join('')
 };
+
+// Thrid draft using reduce
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function (s, numRows) {
+    if (numRows === 1) return s
+    let increase = true
+    let pointer = 0
+    const mappedString = s.split('').reduce((acc, character, index) => {
+        if (index < numRows) {
+            acc[pointer] = []
+        }
+        acc[pointer].push(character)
+
+        pointer = increase ? pointer + 1 : pointer - 1
+
+        if (pointer === 0) {
+            increase = true
+        }
+
+        if (pointer === numRows - 1) {
+            increase = false
+        }
+
+        return acc
+
+    }, [])
+
+    return mappedString.flat().join('')
+};
